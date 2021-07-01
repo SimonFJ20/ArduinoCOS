@@ -7,7 +7,7 @@
 
 BIN=program
 
-CC=g++
+CC=gcc
 CFLAGS=-g -Wall
 LFLAGS=
 
@@ -16,14 +16,14 @@ OBJ=obj
 HDR=src
 LIB=lib
 
-SRCS=$(wildcard $(SRC)/*.cpp)
-OBJS=$(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(SRCS))
+SRCS=$(wildcard $(SRC)/*.c)
+OBJS=$(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
 HDRS=$(wildcard $(HDR)/*.h)
 
 $(BIN): $(OBJS) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LFLAGS) -L$(LIB)
 
-$(OBJ)/%.o: $(SRC)/%.cpp $(OBJ) $(HDRS)
+$(OBJ)/%.o: $(SRC)/%.c $(OBJ) $(HDRS)
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(HDR)
 
 $(OBJ):
