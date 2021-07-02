@@ -17,5 +17,5 @@ The finished product will be writtin mostly in C, and some platform specific in 
 
 ---
 
-[pySmort](/tree/pySmort): "Smort" Language implementation in python
+[pySmort](https://github.com/SimonFJ20/ArduinoCOS/tree/pySmort): "Smort" Language implementation in python
 
