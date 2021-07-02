@@ -1,4 +1,8 @@
-# ArduinoCOS
+# pySmort
+
+"Smort" Language implementation in Python
+
+---
 
 This is a little project for me to learn C and C++
 
