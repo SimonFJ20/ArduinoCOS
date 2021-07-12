@@ -75,7 +75,7 @@ void get_command_name(char *args, char *name)
     }
 }
 
-char decode_command(struct ProgramLine *program, char *command)
+char decode_command(struct ProgramLine *program, char *command, char *running)
 {
     
 
@@ -87,6 +87,7 @@ char decode_command(struct ProgramLine *program, char *command)
     if (u_strmatch("exit", name))
     {
         printf("Shutting down...\n");
+        *running = 0;
         return 0xf0;
     }
     else if (u_strmatch("echo", name))
@@ -98,7 +99,15 @@ char decode_command(struct ProgramLine *program, char *command)
     }
     else
     {
-        printf("Unknown command: \"%s\"", name);
+        char out[32];
+        for (short i = 0; i < 32; i++) {
+            if (name[i] == '\n')
+                break;
+            if (name[i] == '\0')
+                i = 32;
+            out[i] = name[i];
+        }
+        printf("Unknown command: \"%s\"\n", out);
         return 0x01;
     }
     
@@ -111,7 +120,9 @@ int main()
     printf("ArduinoCOS v0.2.0\n");
     struct ProgramLine program[64];
 
-    while (1)
+    char running = 1;
+
+    while (running)
     {
         printf("$ ");
         char command[32];
@@ -121,10 +132,10 @@ int main()
         if (command[0] == '\n')
             continue;
 
-        char code = decode_command(program, command);
+        char code = decode_command(program, command, &running);
 
         if (code == 0xf0) 
-            break;
+            running = 0;
     }
 
 }
