@@ -14,8 +14,3 @@ The target platform is an Arduino Uno, and therefore the code needs to be effici
 The ambition here is as much as possible simple functionality over feature richness.
 
 The finished product will be writtin mostly in C, and some platform specific in Arduino/C++.
-
----
-
-[pySmort](https://github.com/SimonFJ20/ArduinoCOS/tree/pySmort): "Smort" Language implementation in python
-
